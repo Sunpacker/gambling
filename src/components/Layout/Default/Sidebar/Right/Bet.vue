@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+const crashStore = useCrashStore()
+
 const model = ref({
   amount: null,
 })
@@ -37,8 +39,13 @@ const betOptions = [
       </div>
     </div>
 
-    <NButton type="primary" style="--n-height: 73px">
-      {{ $t('play') }}
+    <NButton
+      type="primary"
+      :loading="crashStore.playing"
+      style="--n-height: 73px"
+      @click="crashStore.start"
+    >
+      {{ crashStore.playing ? $t('playing') : $t('play') }}
     </NButton>
   </div>
 </template>

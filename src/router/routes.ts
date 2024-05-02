@@ -13,7 +13,7 @@ export const routes: RouteRecordRaw[] = [
         meta: {
           title: 'Crash',
         },
-        component: () => import('@/views/HomeView.vue'),
+        component: () => import('@/views/CrashView.vue'),
       },
       {
         name: 'game-dice',

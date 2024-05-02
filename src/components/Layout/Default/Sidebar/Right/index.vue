@@ -16,9 +16,7 @@ const currentPanel = ref(panels[0])
 </script>
 
 <template>
-  <aside
-    class="flex flex-col h-full min-w-[385px] max-w-[385px] border-l border-blue-800"
-  >
+  <aside class="sidebar-right">
     <div class="flex">
       <div
         v-for="panel in panels"
@@ -39,6 +37,11 @@ const currentPanel = ref(panels[0])
 </template>
 
 <style lang="scss" scoped>
+.sidebar-right {
+  @apply hidden flex-col h-full min-w-[385px] max-w-[385px] border-l border-blue-800;
+  @apply min-[1640px]:flex;
+}
+
 .panel-head {
   @apply flex justify-center items-center flex-1 h-[75px] text-[16px] bg-blue-900 font-semibold cursor-pointer transition-all;
 

@@ -48,7 +48,7 @@ const players = [
 </script>
 
 <template>
-  <div class="flex items-center p-3 h-16 bg-[#131525]">
+  <div class="menu-bottom">
     <div class="flex items-center gap-2">
       <i class="fa-solid fa-wifi text-[20px]"></i>
 
@@ -76,3 +76,10 @@ const players = [
     </div>
   </div>
 </template>
+
+<style lang="scss" scoped>
+.menu-bottom {
+  @apply hidden items-center p-3 h-16 bg-[#131525];
+  @apply min-[1640px]:flex;
+}
+</style>

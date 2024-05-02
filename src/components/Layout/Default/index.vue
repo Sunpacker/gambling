@@ -30,3 +30,11 @@ onMounted(() => {
     <LayoutDefaultBottom />
   </div>
 </template>
+
+<style lang="scss">
+.game {
+  @apply flex justify-center items-center w-full h-full;
+  background: url('@/assets/img/bg.svg') no-repeat center center;
+  background-size: 100% 100%;
+}
+</style>

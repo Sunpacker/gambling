@@ -63,7 +63,8 @@ const balance = computed(() => {
 
 <style lang="scss" scoped>
 .navbar {
-  @apply flex justify-between items-center px-12 border-b border-blue-800 bg-blue-900;
+  @apply hidden justify-between items-center px-12 border-b border-blue-800 bg-blue-900;
+  @apply min-[1640px]:flex;
 
   .left,
   .right {
