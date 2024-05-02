@@ -1,0 +1,84 @@
+html,
+body {
+  @apply m-0 p-0;
+  overscroll-behavior: none;
+}
+
+:root {
+  --black-color: #000000;
+  --black-90-color: #000000e5;
+  --black-80-color: #000000cc;
+  --black-70-color: #000000b2;
+  --black-60-color: #00000099;
+  --black-50-color: #00000080;
+  --black-40-color: #00000066;
+  --black-30-color: #0000004d;
+  --black-20-color: #00000033;
+  --black-10-color: #0000001a;
+
+  --white-color: #ffffff;
+  --white-90-color: #ffffffe5;
+  --white-80-color: #ffffffcc;
+  --white-70-color: #ffffffb2;
+  --white-60-color: #ffffff99;
+  --white-50-color: #ffffff80;
+  --white-40-color: #ffffff66;
+  --white-30-color: #ffffff4d;
+  --white-20-color: #ffffff33;
+  --white-10-color: #ffffff1a;
+
+  --blue-50-color: #f2f8ff;
+  --blue-100-color: #e5f1ff;
+  --blue-200-color: #c6e0ff;
+  --blue-300-color: #9cc6ff;
+  --blue-400-color: #5e9fff;
+  --blue-500-color: #0075ff;
+  --blue-600-color: #0d5dc6;
+  --blue-700-color: #16458f;
+  --blue-800-color: #172e5b;
+  --blue-900-color: #12192c;
+
+  --gray-50-color: #f9fbfd;
+  --gray-100-color: #f3f7fc;
+  --gray-200-color: #e9edf2;
+  --gray-300-color: #dadfe9;
+  --gray-400-color: #cdd2df;
+  --gray-500-color: #aeb6c8;
+  --gray-600-color: #8f9bb4;
+  --gray-700-color: #6d7689;
+  --gray-800-color: #4d5361;
+  --gray-900-color: #353b4b;
+
+  --green-50-color: #f7fff5;
+  --green-100-color: #f0ffec;
+  --green-200-color: #c7fac1;
+  --green-300-color: #9ff09e;
+  --green-400-color: #81e288;
+  --green-500-color: #59cf6d;
+  --green-600-color: #41b25e;
+  --green-700-color: #2c9552;
+  --green-800-color: #1c7845;
+  --green-900-color: #11633d;
+
+  --orange-50-color: #fff9ed;
+  --orange-100-color: #fef3da;
+  --orange-200-color: #fee4b5;
+  --orange-300-color: #fed090;
+  --orange-400-color: #febe74;
+  --orange-500-color: #fe9f47;
+  --orange-600-color: #ef8b30;
+  --orange-700-color: #d66f11;
+  --orange-800-color: #ae5606;
+  --orange-900-color: #823e00;
+
+  --red-50-color: #fff1f2;
+  --red-100-color: #ffe3e5;
+  --red-200-color: #ffbabe;
+  --red-300-color: #ff9297;
+  --red-400-color: #ff6971;
+  --red-500-color: #ff404a;
+  --red-600-color: #ff0815;
+  --red-700-color: #cf000b;
+  --red-800-color: #970008;
+  --red-900-color: #5f0005;
+}
