@@ -1,4 +1,4 @@
-export const ThemeTailwindcss = {
+export const ThemeCss = {
   borderRadius: {
     none: '0px',
     sm: '0.125rem',

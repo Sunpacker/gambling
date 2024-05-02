@@ -2,7 +2,7 @@ import { createApp } from 'vue'
 
 import { localization } from '@/plugins/localization'
 import router from '@/router'
-import { storage } from '@/stores'
+import { storage } from '@/plugins/storage'
 import App from '@/App.vue'
 
 import '@/assets/styles/tailwind.css'

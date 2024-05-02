@@ -38,7 +38,7 @@ export default defineConfig(({ mode }) => {
 
       autoImport({
         dts: 'auto-imports.d.ts',
-        dirs: ['src/utils'],
+        dirs: ['src/utils', 'src/stores'],
         imports: [
           'vue',
           'vue-router',

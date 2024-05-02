@@ -1,5 +1,9 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { defaultTheme } from '@/themes/default'
+</script>
 
 <template>
-  <RouterView />
+  <NConfigProvider :theme-overrides="defaultTheme">
+    <RouterView />
+  </NConfigProvider>
 </template>

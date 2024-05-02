@@ -1,6 +1,6 @@
 html,
 body {
-  @apply m-0 p-0;
+  @apply m-0 p-0 text-blue-600 bg-blue-900;
   overscroll-behavior: none;
 }
 
@@ -32,11 +32,11 @@ body {
   --blue-200-color: #c6e0ff;
   --blue-300-color: #9cc6ff;
   --blue-400-color: #5e9fff;
-  --blue-500-color: #0075ff;
-  --blue-600-color: #0d5dc6;
-  --blue-700-color: #16458f;
-  --blue-800-color: #172e5b;
-  --blue-900-color: #12192c;
+  --blue-500-color: #767fd1;
+  --blue-600-color: #6871c1;
+  --blue-700-color: #4457ff;
+  --blue-800-color: #1a1d33;
+  --blue-900-color: #080911;
 
   --gray-50-color: #f9fbfd;
   --gray-100-color: #f3f7fc;
@@ -63,7 +63,7 @@ body {
   --orange-50-color: #fff9ed;
   --orange-100-color: #fef3da;
   --orange-200-color: #fee4b5;
-  --orange-300-color: #fed090;
+  --orange-300-color: #ffd05b;
   --orange-400-color: #febe74;
   --orange-500-color: #fe9f47;
   --orange-600-color: #ef8b30;
@@ -81,4 +81,8 @@ body {
   --red-700-color: #cf000b;
   --red-800-color: #970008;
   --red-900-color: #5f0005;
+}
+
+.n-input__input {
+  --n-label-font-weight: 600;
 }

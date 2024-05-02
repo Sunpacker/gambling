@@ -1,1 +1,9 @@
-{}
+{
+  "deposit": "Deposit",
+  "bet": "Bet",
+  "autobet": "Autobet",
+  "bet-amount": "Bet Amount",
+  "enter-amount": "Enter Amount",
+  "play": "Play",
+  "history": "Game history"
+}
