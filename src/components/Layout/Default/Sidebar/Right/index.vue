@@ -4,15 +4,19 @@ import LayoutDefaultSidebarRightAutobet from '@/components/Layout/Default/Sideba
 
 const { t } = useI18n({ useScope: 'global' })
 
-const panels = [
-  { name: 'bet', label: t('bet'), component: LayoutDefaultSidebarRightBet },
+const panels = ref([
+  {
+    name: 'bet',
+    label: t('bet'),
+    component: shallowRef(LayoutDefaultSidebarRightBet),
+  },
   {
     name: 'autobet',
     label: t('autobet'),
-    component: LayoutDefaultSidebarRightAutobet,
+    component: shallowRef(LayoutDefaultSidebarRightAutobet),
   },
-]
-const currentPanel = ref(panels[0])
+])
+const currentPanel = ref(panels.value[0])
 </script>
 
 <template>
@@ -39,7 +43,7 @@ const currentPanel = ref(panels[0])
 <style lang="scss" scoped>
 .sidebar-right {
   @apply hidden flex-col h-full min-w-[385px] max-w-[385px] border-l border-blue-800;
-  @apply lg:flex;
+  @apply min-[1460px]:flex;
 }
 
 .panel-head {

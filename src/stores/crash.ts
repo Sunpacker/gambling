@@ -4,11 +4,7 @@ export const useCrashStore = defineStore('crash', () => {
   const playing = ref(false)
 
   function start() {
-    playing.value = true
-
-    setTimeout(() => {
-      playing.value = false
-    }, 2000)
+    throw new Error('Mehod must be overidden')
   }
 
   return { playing, start } as Game

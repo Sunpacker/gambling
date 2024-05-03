@@ -63,7 +63,7 @@ const players = [
         <NButton secondary>{{ $t('history') }}</NButton>
       </div>
 
-      <NScrollbar class="hidden lg:block" x-scrollable style="height: 40px">
+      <NScrollbar class="hidden lg:block" x-scrollable>
         <div class="flex gap-3">
           <NButton v-for="player in players" :key="player.id" secondary>
             <div class="flex items-center gap-2">
@@ -99,7 +99,7 @@ const players = [
 
 <style lang="scss" scoped>
 .menu-bottom {
-  @apply flex justify-between bg-[#131525] border-t border-blue-800 overflow-hidden;
+  @apply flex justify-between items-center bg-[#131525] border-t border-blue-800 overflow-hidden;
 }
 
 .left,
@@ -108,7 +108,7 @@ const players = [
 }
 
 .left {
-  @apply flex-1 p-3 h-16  overflow-x-auto overflow-y-hidden;
+  @apply flex-1 px-3 py-4 overflow-x-auto overflow-y-hidden;
 }
 
 .right {
@@ -125,6 +125,6 @@ const players = [
 
 .menu-bottom-mobile {
   @apply flex justify-between bg-[#131525] border-t border-blue-800 overflow-hidden;
-  @apply lg:hidden;
+  @apply min-[1460px]:hidden;
 }
 </style>
