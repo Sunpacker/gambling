@@ -39,7 +39,7 @@ const currentPanel = ref(panels[0])
 <style lang="scss" scoped>
 .sidebar-right {
   @apply hidden flex-col h-full min-w-[385px] max-w-[385px] border-l border-blue-800;
-  @apply min-[1640px]:flex;
+  @apply lg:flex;
 }
 
 .panel-head {

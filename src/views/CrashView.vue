@@ -3,7 +3,7 @@
 <template>
   <main class="game">
     <div class="crash">
-      <GameCrash />
+      <!-- <GameCrash /> -->
     </div>
   </main>
 </template>

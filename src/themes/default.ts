@@ -5,6 +5,11 @@ export const defaultTheme: GlobalThemeOverrides = {
     primaryColor: '#4456FE',
   },
 
+  Scrollbar: {
+    color: '#4457FF66',
+    colorHover: '#4457FFCC',
+  },
+
   Button: {
     textColor: '#FFFFFF',
     fontWeight: 600,

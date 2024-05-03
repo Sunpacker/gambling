@@ -33,20 +33,23 @@ const betOptions = [
       </NFormItem>
     </NForm>
 
-    <div class="flex gap-3 mb-auto">
+    <div class="flex justify-between gap-3 mb-6">
       <div v-for="option in betOptions" :key="option.label" class="bet-option">
         {{ option.label }}
       </div>
     </div>
 
-    <NButton
-      type="primary"
-      :loading="crashStore.playing"
-      style="--n-height: 73px"
-      @click="crashStore.start"
-    >
-      {{ crashStore.playing ? $t('playing') : $t('play') }}
-    </NButton>
+    <div class="mt-auto">
+      <NButton
+        type="primary"
+        :loading="crashStore.playing"
+        style="--n-height: 73px"
+        block
+        @click="crashStore.start"
+      >
+        {{ crashStore.playing ? $t('playing') : $t('play') }}
+      </NButton>
+    </div>
   </div>
 </template>
 
