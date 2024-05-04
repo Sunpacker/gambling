@@ -99,7 +99,8 @@ const players = [
 
 <style lang="scss" scoped>
 .menu-bottom {
-  @apply flex justify-between items-center bg-[#131525] border-t border-blue-800 overflow-hidden;
+  @apply flex justify-between items-center py-1 bg-[#131525] border-t border-blue-800 overflow-hidden z-10;
+  @apply lg:py-2;
 }
 
 .left,
@@ -124,7 +125,7 @@ const players = [
 }
 
 .menu-bottom-mobile {
-  @apply flex justify-between bg-[#131525] border-t border-blue-800 overflow-hidden;
+  @apply flex justify-between bg-[#131525] border-t border-blue-800 overflow-hidden z-10;
   @apply min-[1460px]:hidden;
 }
 </style>

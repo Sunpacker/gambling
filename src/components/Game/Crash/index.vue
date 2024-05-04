@@ -1,8 +1,24 @@
 <script lang="ts" setup>
 import gsap from 'gsap'
-import { formatCurrency } from '@/utils/formatCurrency'
 
 const crashStore = useCrashStore()
+
+onMounted(() => {
+  setTimeout(initAnimation)
+})
+
+const { width } = useWindowSize()
+const desktopVersion = computed(() => width.value > 768)
+
+const card = ref()
+const cardSize = useElementSize(card)
+
+watch(
+  () => [width.value, cardSize.width.value],
+  () => {
+    setTimeout(initAnimation)
+  },
+)
 
 let timeline: gsap.core.Timeline
 const animDuration = 0.4
@@ -14,146 +30,142 @@ function toggleCrashTimeline() {
 
   // start new game again after first one
   if (!reversed) {
-    showBetButtons.value = false
+    const totalDuration = animDuration * 1000 * 4
+    const delay = animDuration * 1000 * 1.5
 
-    setTimeout(
-      () => {
-        timeline.reversed(false)
-      },
-      animDuration * 1000 * 4 + animDuration * 1000 * 1.5,
-    )
+    showBetButtons.value = false
+    setTimeout(() => {
+      timeline.reversed(false)
+    }, totalDuration + delay)
   }
 }
 crashStore.start = toggleCrashTimeline
 
 const main = ref()
-const showBetButtons = ref(false)
-const cardSpace = 32
+const cardSpace = 50
 const cardsGap = 20
+const showBetButtons = ref(false)
+const gsapCtx = ref()
 function initAnimation() {
-  const ctx = gsap.context((self) => {
-    if (!cardSize.value) return
+  gsapCtx.value = gsap.context(() => {
+    if (!cardSize.width.value) return
 
-    const cards: any[] = gsap.utils.toArray('.playing-card')
+    const cards = document.querySelectorAll('.playing-card:not(#accent-card)')
+    const accentCard = document.querySelector('#accent-card')
+    if (!accentCard) return
 
-    timeline = gsap
-      .timeline()
-      .to(cards[2], {
-        x: -cardSize.value.width / 2 - cardsGap / 2,
-        y: -(cardSize.value.height + cardSpace),
-        rotationY: -180,
-        duration: animDuration,
-      })
-      .to(cards[3], {
-        x: -cardSize.value.width / 1.67,
-        duration: animDuration,
-      })
-      .to(cards[1], {
-        x: cardSize.value.width / 1.67 - cardsGap / 2,
-        duration: animDuration,
-      })
-      .to(cards[0], {
-        x: cardSize.value.width / 1.67,
-        duration: animDuration,
-        onComplete() {
-          crashStore.playing = false
-          showBetButtons.value = true
-        },
-      })
-      .reverse()
+    if (desktopVersion.value) {
+      const divideRatio = 1.67
+
+      timeline = gsap
+        .timeline()
+        .to(accentCard, {
+          x: -cardSize.width.value / 2 - cardsGap / 2,
+          y: -(cardSize.height.value + cardSpace),
+          rotationY: -180,
+          duration: animDuration,
+        })
+        .to(cards[2], {
+          x: -cardSize.width.value / divideRatio,
+          duration: animDuration,
+        })
+        .to(cards[1], {
+          x: cardSize.width.value / divideRatio - cardsGap / 2 + 2,
+          duration: animDuration,
+        })
+        .to(cards[0], {
+          x: cardSize.width.value / divideRatio,
+          duration: animDuration,
+          onComplete() {
+            crashStore.playing = false
+            showBetButtons.value = true
+          },
+        })
+        .reverse()
+    } else {
+      timeline = gsap
+        .timeline()
+        .to(accentCard, {
+          rotationY: -180,
+          duration: animDuration,
+          onComplete() {
+            crashStore.playing = false
+            showBetButtons.value = true
+          },
+        })
+        .reverse()
+    }
   }, main.value)
-
-  onUnmounted(ctx.revert)
 }
+onUnmounted(() => {
+  gsapCtx.value?.revert()
+})
 
-const borderObserver = new ResizeObserver(onElementResize)
-const cardSize = ref<DOMRect | null>(null)
-function onElementResize(entries: ResizeObserverEntry[]) {
-  cardSize.value = entries[0].target.getBoundingClientRect()
-}
-onMounted(() => {
-  const domElement = document.querySelector('.playing-card')
+const gameCanvasTransform = computed(() => {
+  if (!cardSize.height.value) return undefined
 
-  if (domElement) {
-    cardSize.value = domElement.getBoundingClientRect()
-    borderObserver.observe(domElement)
+  let offset = cardSize.height.value + cardSpace
+  if (width.value < 1024) {
+    offset /= 3
+  } else {
+    offset /= 2
   }
 
-  nextTick(initAnimation)
+  return `translateY(${offset}px)`
 })
 </script>
 
 <template>
   <div
-    id="crash"
+    v-if="desktopVersion"
+    class="flex items-center gap-11"
     :style="{
-      transform: cardSize ? `translateY(${cardSize.height / 2}px)` : undefined,
+      transform: gameCanvasTransform,
     }"
   >
-    <div :class="['bet-info left', { 'opacity-0': !showBetButtons }]">
-      <UiIcon class="bet-button" name="lower" width="64px" height="64px" />
-
-      <div class="title">Low or same</div>
-      <div class="result">
-        <div>Win</div>
-
-        <div class="flex items-center gap-1">
-          <span class="text-orange-300">{{ formatCurrency(275.43) }}</span>
-          <UiIcon name="coin" width="16px" height="16px" />
-        </div>
-      </div>
-    </div>
+    <GameCrashBetInfo
+      :class="[{ 'opacity-0': !showBetButtons }]"
+      type="lower"
+    />
 
     <div class="flex" :style="{ gap: `${cardsGap}px` }">
+      <GameCrashCard ref="card" />
       <GameCrashCard />
-      <GameCrashCard />
-      <GameCrashCard />
+      <GameCrashCard id="accent-card" />
       <GameCrashCard />
     </div>
 
-    <div :class="['bet-info right', { 'opacity-0': !showBetButtons }]">
-      <UiIcon class="bet-button" name="higher" width="64px" height="64px" />
+    <GameCrashBetInfo
+      :class="[{ 'opacity-0': !showBetButtons }]"
+      type="higher"
+    />
+  </div>
 
-      <div class="title">High or same</div>
-      <div class="result">
-        <div>Win</div>
+  <div
+    v-else
+    class="flex flex-col justify-center items-center relative w-full h-full"
+  >
+    <div class="flex gap-6 absolute">
+      <GameCrashBetInfo
+        :class="[{ 'opacity-0': !showBetButtons }]"
+        type="lower"
+      />
 
-        <div class="flex items-center gap-1">
-          <span class="text-orange-300">{{ formatCurrency(275.43) }}</span>
-          <UiIcon name="coin" width="16px" height="16px" />
-        </div>
-      </div>
+      <GameCrashCard class="!w-[118px] !h-[178px]" id="accent-card" />
+
+      <GameCrashBetInfo
+        :class="[{ 'opacity-0': !showBetButtons }]"
+        type="higher"
+      />
+    </div>
+
+    <div
+      class="flex gap-5 absolute"
+      :style="{ bottom: cardSize ? `${cardSize.height.value / 3}px` : 0 }"
+    >
+      <GameCrashCard ref="card" />
+      <GameCrashCard />
+      <GameCrashCard />
     </div>
   </div>
 </template>
-
-<style lang="scss" scoped>
-#crash {
-  @apply flex items-center gap-11 h-full;
-}
-
-.bet-info {
-  $xOffset: 128px;
-  @apply flex flex-col justify-center items-center gap-2 text-center whitespace-nowrap transition-all;
-
-  &.left {
-    transform: translateX($xOffset);
-  }
-  &.right {
-    transform: translateX(-$xOffset);
-  }
-
-  .title {
-    @apply text-white font-semibold;
-  }
-
-  .result {
-    @apply flex items-center gap-1.5 font-semibold;
-  }
-}
-
-.bet-button {
-  @apply cursor-pointer transition-all;
-  @apply active:scale-105;
-}
-</style>

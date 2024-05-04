@@ -55,7 +55,8 @@ const betOptions = [
 
 <style lang="scss" scoped>
 .bet-option {
-  @apply flex justify-center items-center w-[60px] px-5 py-3 font-semibold rounded-md bg-[#222646] cursor-pointer transition-all;
+  @apply flex justify-center items-center w-[60px] px-3 py-3 font-semibold rounded-md bg-[#222646] cursor-pointer transition-all;
   @apply hover:text-white;
+  @apply lg:px-5;
 }
 </style>

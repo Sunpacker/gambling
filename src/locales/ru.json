@@ -6,5 +6,7 @@
   "enter-amount": "Введите Сумму",
   "play": "Играть",
   "playing": "Играем...",
-  "history": "История игр"
+  "history": "История игр",
+  "lower": "Low or same",
+  "higher": "High or same"
 }

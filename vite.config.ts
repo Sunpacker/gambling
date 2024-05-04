@@ -43,6 +43,7 @@ export default defineConfig(({ mode }) => {
           'vue',
           'vue-router',
           'pinia',
+          '@vueuse/core',
 
           {
             'vue-i18n': ['useI18n'],

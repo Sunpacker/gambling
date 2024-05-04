@@ -42,12 +42,14 @@ const currentPanel = ref(panels.value[0])
 
 <style lang="scss" scoped>
 .sidebar-right {
-  @apply hidden flex-col h-full min-w-[385px] max-w-[385px] border-l border-blue-800;
+  @apply hidden flex-col h-full w-full border-l border-blue-800 z-10;
+  @apply lg:min-w-[385px] lg:max-w-[385px];
   @apply min-[1460px]:flex;
 }
 
 .panel-head {
-  @apply flex justify-center items-center flex-1 h-[75px] text-[16px] bg-blue-900 font-semibold cursor-pointer transition-all;
+  @apply flex justify-center items-center flex-1 h-[60px] text-[16px] bg-blue-900 font-semibold cursor-pointer transition-all;
+  @apply lg:h-[75px];
 
   &.active {
     @apply text-white bg-[#131525];

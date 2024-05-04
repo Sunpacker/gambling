@@ -12,7 +12,7 @@ import Card from '@/assets/img/card.svg?raw'
 
 <style lang="scss" scoped>
 .playing-card {
-  @apply relative inline-block w-[80px] h-[120px] bg-transparent;
+  @apply relative w-[80px] h-[120px] bg-transparent;
   @apply lg:w-[135px] lg:h-[203px];
   @apply min-[1070px]:w-[185px] min-[1070px]:h-[277px];
   perspective: 1000px;
