@@ -44,6 +44,7 @@ export default defineConfig(({ mode }) => {
           'vue-router',
           'pinia',
           '@vueuse/core',
+          'vitest',
 
           {
             'vue-i18n': ['useI18n'],
